@@ -6,8 +6,13 @@ module.exports = app => {
     const Tasks = app.db.models.Tasks;
 
     app.route('/tasks')
+        .all(app.auth.authenticate())
         .get((req, res) => {
-            Tasks.findAll()
+            Tasks.findAll({
+                where: {
+                    user_id: req.user.id
+                }
+            })
                 .then(result => {
                     res.json(result);
                 })
@@ -25,7 +30,10 @@ module.exports = app => {
                 return res.status(400).json({ errors: errors.array() });
             }
 
-            Tasks.create(matchedData(req))
+            const task = matchedData(req);
+            task.user_id = req.user.id;
+
+            Tasks.create(task)
                 .then(result => {
                     res.json(result);
                 })
@@ -35,8 +43,12 @@ module.exports = app => {
         });
 
     app.route('/tasks/:id')
+        .all(app.auth.authenticate())
         .get((req, res) => {
-            Tasks.findbyId(req.param.id)
+            Tasks.findOne({
+                id: req.params.id,
+                user_id: req.user.id
+            })
                 .then(result => {
                     res.json(result)
                 })
@@ -63,7 +75,8 @@ module.exports = app => {
         .delete((res, req) => {
             Tasks.destroy({
                 where: {
-                    id: req.params.id
+                    id: req.params.id,
+                    user_id: req.user.id
                 }
             })
                 .then(() => {
