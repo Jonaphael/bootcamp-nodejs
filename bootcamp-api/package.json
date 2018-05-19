@@ -1,0 +1,20 @@
+{
+  "name": "bootcamp-api",
+  "version": "0.0.1",
+  "description": "Task management API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonaphael/bootcamp-nodejs.git"
+  },
+  "author": "Jonaphael Aristil",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}
