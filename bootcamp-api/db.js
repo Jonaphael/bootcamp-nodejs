@@ -29,7 +29,7 @@ module.exports = app => {
         });
 
         Object.keys(db.models).forEach(key => {
-            if (db.models[key].hasOwnProperty('assiociate'))
+            if (db.models[key].hasOwnProperty('associate'))
                 db.models[key].associate(db.models);
         });
     };
