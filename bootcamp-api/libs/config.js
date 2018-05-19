@@ -5,7 +5,7 @@ module.exports = {
     params: {
         dialect: 'sqlite',
         storage: 'bootcamp.sqlite',
-        define:{
+        define: {
             underscored: true
         }
     }

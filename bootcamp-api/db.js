@@ -33,7 +33,6 @@ module.exports = app => {
                 db.models[key].associate(db.models);
         });
     };
-
-
+    
     return db;
 };
